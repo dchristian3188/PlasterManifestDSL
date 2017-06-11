@@ -25,7 +25,7 @@ Function Get-TextParameter
         $Default
     )
 
-    $paramSB = [System.Text.StringBuilder]::new("<Parameter name='$($Name)' type = 'text' ")
+    $paramSB = [System.Text.StringBuilder]::new("<parameter name='$($Name)' type = 'text' ")
     if($Prompt)
     {
         $paramSB.Append(" prompt='$($Prompt)'") > $null

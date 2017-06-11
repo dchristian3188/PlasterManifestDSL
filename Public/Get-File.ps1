@@ -32,8 +32,8 @@ Function Get-File
         $OpenInEditor
     )
 
-    $fileSB = [System.Text.StringBuilder]::new()
-    $fileSB.AppendLine("<file source='$($Source)'") > $null
+    $fileSB = [System.Text.StringBuilder]::new("<file")
+    $fileSB.AppendLine(" source='$($Source)'") > $null
     $fileSB.AppendLine("    destination='$($Destination)'") > $null
     
     if($Condition)
@@ -48,6 +48,6 @@ Function Get-File
     }
 
     $fileSB.AppendLine('/>') > $null
-    Write-Output -InputObject $fileSB.ToString()
+    Write-Output -InputObject $fileSB.ToString().Trim(" ")
 
 }

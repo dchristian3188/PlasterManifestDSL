@@ -15,5 +15,5 @@ Function Get-Condition
     $conditionString = $conditionString.Trim(" ")
     $conditionString = $conditionString -replace '\r\n$',''
     
-    Write-Output -InputObject (" condition='$($conditionString)'")
+    Write-Output -InputObject (" condition='{$($conditionString)}'")
 }

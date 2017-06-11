@@ -40,7 +40,7 @@ Function Get-ChoiceParameter
         $ScriptBlock
     )
 
-    $paramSB = [System.Text.StringBuilder]::new("<Parameter name='$($Name)' type = 'choice' ")
+    $paramSB = [System.Text.StringBuilder]::new("<parameter name='$($Name)' type = 'choice' ")
     if($Prompt)
     {
         $paramSB.Append(" prompt='$($Prompt)'") > $null

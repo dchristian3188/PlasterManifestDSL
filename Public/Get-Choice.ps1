@@ -35,7 +35,7 @@ Function Get-Choice
         $paramSB.AppendLine("       help='$($Help)'") > $null
     }
 
-    $paramSB.Append("   >") > $null
+    $paramSB.Append("/>") > $null
     Write-Output $paramSB.ToString()
 }
 

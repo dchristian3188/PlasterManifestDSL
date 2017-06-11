@@ -10,5 +10,11 @@ Function Get-Content
         $ScriptBlock
     )
 
-    $ScriptBlock.Invoke()
+    $subContent = $ScriptBlock.Invoke()
+    $contentBlock = @"
+<content>
+$subContent
+</content>
+"@
+    Write-Output -InputObject $contentBlock
 }

@@ -1,3 +1,4 @@
+ipmo $PSScriptRoot\..\PlasterDSL.psd1
 PlasterManifest {
     Metadata {
         Title = "DC Custom Function Template"
@@ -23,4 +24,4 @@ PlasterManifest {
         }
         TemplateFile -Source 'testsTemplate.ps1' -Destination '${PLASTER_PARAM_FunctionName}.tests.ps1'
     }
-}
+} | Export-PlasterManifest -Destination C:\temp\plasterManifest.xml -Verbose -PassThru | % {Code $psitem.fullname}
