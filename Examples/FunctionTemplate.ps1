@@ -1,4 +1,4 @@
-ipmo $PSScriptRoot\..\PlasterDSL.psd1
+ipmo $PSScriptRoot\..\PlasterDSL.psd1 -Force
 PlasterManifest {
     Metadata {
         Title = "DC Custom Function Template"
