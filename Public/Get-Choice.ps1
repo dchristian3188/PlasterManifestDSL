@@ -28,14 +28,13 @@ Function Get-Choice
 
     $paramSB = [System.Text.StringBuilder]::new()
     $paramSB.AppendLine("   <choice label='&amp;$($Label)'") > $null
-
     $paramSB.AppendLine("       value='$($Value)'") > $null
-    if($Help)
+    if ($Help)
     {
         $paramSB.AppendLine("       help='$($Help)'") > $null
     }
 
-    $paramSB.Append("/>") > $null
+    $paramSB.Append('/>') > $null
     Write-Output $paramSB.ToString()
 }
 

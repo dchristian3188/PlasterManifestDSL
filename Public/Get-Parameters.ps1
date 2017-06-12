@@ -15,6 +15,7 @@ Function Get-Parameters
 <parameters>
 $subParams
 </parameters>
+
 "@
     Write-Output -InputObject $paramaterBlock
 }

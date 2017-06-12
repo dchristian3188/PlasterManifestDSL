@@ -15,6 +15,7 @@ Function Get-Content
 <content>
 $subContent
 </content>
+
 "@
     Write-Output -InputObject $contentBlock
 }

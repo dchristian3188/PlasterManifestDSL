@@ -56,6 +56,7 @@ Function New-Metadata
     <author>$($Author)</author>
     <tags>$($Tags)</tags>
 </metadata>
+
 "@
     Write-Output -InputObject $metadata
 }
