@@ -12,7 +12,6 @@ Function New-PlasterParameterChoice
 
         [Parameter(
             ValueFromPipeline = $true,
-            Mandatory = $true,
             Position = 1
         )]
         [string]
@@ -25,6 +24,11 @@ Function New-PlasterParameterChoice
         [string]
         $Help
     )
+
+    if(-not($Value))
+    {
+        $Value = $Label
+    }
 
     $paramSB = [System.Text.StringBuilder]::new()
     $paramSB.AppendLine("   <choice label='&amp;$($Label)'") > $null
