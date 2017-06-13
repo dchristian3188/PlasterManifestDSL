@@ -1,4 +1,4 @@
-Function Get-Message
+Function New-PlasterContentMessage
 {
     [CmdletBinding()]
     param(
@@ -32,9 +32,11 @@ Function Get-Message
     
     if($Condition)
     {
-        $messageSB.Append((Get-Condition $Condition)) > $null
+        $messageSB.Append((New-Condition $Condition)) > $null
     }
 
     $messageSB.AppendLine(">$($Message)</message>") > $null
     Write-Output $messageSB.ToString()
 }
+
+New-Alias -Name Message -Value New-PlasterContentMessage  

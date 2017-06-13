@@ -1,4 +1,4 @@
-Function Get-TextParameter
+Function New-PlasterParameterText
 {
     [CmdletBinding()]
     param(
@@ -39,3 +39,5 @@ Function Get-TextParameter
     $paramSB.AppendLine(" />") > $null
     Write-Output $paramSB.ToString()
 }
+
+New-Alias -Name Text -Value New-PlasterParameterText

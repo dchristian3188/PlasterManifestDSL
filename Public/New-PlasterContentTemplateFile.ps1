@@ -1,4 +1,4 @@
-Function Get-TemplateFile
+Function New-PlasterContentTemplateFile
 {
     [CmdletBinding()]
     param(
@@ -45,7 +45,7 @@ Function Get-TemplateFile
     
     if($Condition)
     {
-        $conditionString = Get-Condition -Condition $Condition
+        $conditionString = New-Condition -Condition $Condition
         $fileSB.AppendLine("   $conditionString") > $null
     }
 
@@ -63,3 +63,5 @@ Function Get-TemplateFile
     Write-Output -InputObject $fileSB.ToString()
 
 }
+
+New-Alias -Name TemplateFile -Value New-PlasterContentTemplateFile

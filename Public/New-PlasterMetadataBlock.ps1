@@ -1,4 +1,4 @@
-Function Get-Metadata
+Function New-PlasterMetadataBlock
 {
     [CmdletBinding()]
     param(
@@ -15,3 +15,5 @@ Function Get-Metadata
     $metaHash = & $newScriptBlock
     New-Metadata @metaHash
 }
+
+New-Alias -Name Metadata -Value New-PlasterMetadataBlock  

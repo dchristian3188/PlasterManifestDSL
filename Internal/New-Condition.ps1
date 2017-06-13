@@ -1,4 +1,4 @@
-Function Get-Condition
+Function New-Condition
 {
     [CmdletBinding()]
     param(
@@ -17,3 +17,4 @@ Function Get-Condition
     
     Write-Output -InputObject (" condition='{$($conditionString)}'")
 }
+

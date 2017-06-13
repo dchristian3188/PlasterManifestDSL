@@ -1,4 +1,4 @@
-Function Get-File
+Function New-PlasterContentFile
 {
     [CmdletBinding()]
     param(
@@ -38,7 +38,7 @@ Function Get-File
     
     if($Condition)
     {
-        $conditionString = Get-Condition -Condition $Condition
+        $conditionString = New-Condition -Condition $Condition
         $fileSB.AppendLine("   $conditionString") > $null
     }
 
@@ -51,3 +51,5 @@ Function Get-File
     Write-Output -InputObject $fileSB.ToString().Trim(" ")
 
 }
+
+New-Alias -Name File -Value New-PlasterContentFile  

@@ -1,4 +1,4 @@
-Function Get-Choice
+Function New-PlasterParameterChoice
 {
     [CmdletBinding()]
     param(
@@ -38,4 +38,4 @@ Function Get-Choice
     Write-Output $paramSB.ToString()
 }
 
-New-Alias -Name Choice -Value Get-Choice -Force -Verbose:$VerbosePreference
+New-Alias -Name Choice -Value New-PlasterParameterChoice  

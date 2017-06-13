@@ -1,4 +1,4 @@
-Function Get-PlasterManifest
+Function New-PlasterManifestXML
 {
     [CmdletBinding()]
     param(
@@ -19,3 +19,5 @@ $($manifestBody)
 "@
     Write-Output -InputObject $manifest
 }
+
+New-Alias -Name PlasterManifest -Value New-PlasterManifestXML

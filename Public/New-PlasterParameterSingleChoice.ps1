@@ -1,4 +1,4 @@
-Function Get-ChoiceParameter
+Function New-PlasterParameterSingleChoice
 {
     [CmdletBinding()]
     param(
@@ -64,3 +64,5 @@ Function Get-ChoiceParameter
     $paramSB.Append("</parameter>") > $null
     Write-Output $paramSB.ToString()
 }
+
+New-Alias -Name SingleChoice -Value New-PlasterParameterSingleChoice  

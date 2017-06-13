@@ -1,4 +1,4 @@
-Function Get-Content
+Function New-PlasterContentBlock
 {
     [CmdletBinding()]
     param(
@@ -19,3 +19,5 @@ $subContent
 "@
     Write-Output -InputObject $contentBlock
 }
+
+New-Alias -Name Content -Value New-PlasterContentBlock  

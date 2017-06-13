@@ -15,7 +15,9 @@ PlasterManifest {
             Choice -Label 'Internal' -Help 'Adds a internal folder to module root' -Value "Internal"
             Choice -Label 'Classes' -Help "Adds a classes folder to module root" -Value 'Classes'
             Choice -Label 'Binaries' -Help 'Adds a binaries folder to module root' -Value 'Binaries'
-            Choice -Label 'Data' -Help 'Does not add a pester folder' -Value 'Data'
+            Choice -Label 'Data' -Help 'Adds a data folder to module root' -Value 'Data'
         }
+
+        SingleChoice 
     }
 }

@@ -1,4 +1,4 @@
-Function Get-Parameters
+Function New-PlasterParameterBlock
 {
     [CmdletBinding()]
     param(
@@ -19,3 +19,5 @@ $subParams
 "@
     Write-Output -InputObject $paramaterBlock
 }
+
+New-Alias -Name Parameters -Value New-PlasterParameterBlock
