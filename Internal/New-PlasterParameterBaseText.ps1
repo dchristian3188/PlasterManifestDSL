@@ -1,4 +1,4 @@
-Function New-PlasterParameterMultiChoice
+Function New-PlasterParameterBaseText
 {
     [CmdletBinding()]
     param(
@@ -32,15 +32,29 @@ Function New-PlasterParameterMultiChoice
         $Store,
 
         [Parameter(
-            ValueFromPipeline = $true,
-            Mandatory = $true,
-            Position = 0
+            ValueFromPipeline = $true
         )]
-        [scriptblock]
-        $ScriptBlock
+        [ValidateSet('text','user-fullname','user-email')]
+        [string]
+        $TextType
     )
 
-    New-PlasterParameterBaseChoice -ChoiceType "multichoice" @PSBoundParameters
-}
+    $paramSB = [System.Text.StringBuilder]::new("<parameter name='$($Name)' type = '$TextType' ")
+    if($Prompt)
+    {
+        $paramSB.Append(" prompt='$($Prompt)'") > $null
+    }
 
-New-Alias -Name MultiChoice -Value New-PlasterParameterMultiChoice
+    if($Default)
+    {
+        $paramSB.Append(" default='$($Default)'") > $null
+    }
+
+    if($Store)
+    {
+        $paramSB.Append(" store='$($Store)'") > $null
+    }
+    
+    $paramSB.AppendLine(" />") > $null
+    Write-Output $paramSB.ToString()
+}

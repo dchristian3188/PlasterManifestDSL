@@ -22,22 +22,17 @@ Function New-PlasterParameterUserFullName
             Position = 2
         )]
         [string]
-        $Default
+        $Default, 
+
+        [Parameter(
+            ValueFromPipeline = $true
+        )]
+        [ValidateSet('Text','Encrypted')]
+        [string]
+        $Store
     )
 
-    $paramSB = [System.Text.StringBuilder]::new("<parameter name='$($Name)' type = 'user-fullname' ")
-    if($Prompt)
-    {
-        $paramSB.Append(" prompt='$($Prompt)'") > $null
-    }
-
-    if($Default)
-    {
-        $paramSB.Append(" default='$($Default)'") > $null
-    }
-    
-    $paramSB.AppendLine(" />") > $null
-    Write-Output $paramSB.ToString()
+    New-PlasterParameterBaseText -TextType 'user-fullname' @PSBoundParameters
 }
 
-New-Alias -Name Text -Value New-PlasterParameterText
+New-Alias -Name UserFullName -Value New-PlasterParameterUserFullName

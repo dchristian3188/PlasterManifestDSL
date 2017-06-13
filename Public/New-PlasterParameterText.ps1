@@ -22,22 +22,17 @@ Function New-PlasterParameterText
             Position = 2
         )]
         [string]
-        $Default
+        $Default,
+
+        [Parameter(
+            ValueFromPipeline = $true
+        )]
+        [ValidateSet('Text','Encrypted')]
+        [string]
+        $Store
     )
 
-    $paramSB = [System.Text.StringBuilder]::new("<parameter name='$($Name)' type = 'text' ")
-    if($Prompt)
-    {
-        $paramSB.Append(" prompt='$($Prompt)'") > $null
-    }
-
-    if($Default)
-    {
-        $paramSB.Append(" default='$($Default)'") > $null
-    }
-    
-    $paramSB.AppendLine(" />") > $null
-    Write-Output $paramSB.ToString()
+    New-PlasterParameterBaseText -TextType 'text' @PSBoundParameters
 }
 
 New-Alias -Name Text -Value New-PlasterParameterText

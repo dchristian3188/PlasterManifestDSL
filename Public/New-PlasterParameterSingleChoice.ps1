@@ -40,29 +40,7 @@ Function New-PlasterParameterSingleChoice
         $ScriptBlock
     )
 
-    $paramSB = [System.Text.StringBuilder]::new("<parameter name='$($Name)' type = 'choice' ")
-    if($Prompt)
-    {
-        $paramSB.Append(" prompt='$($Prompt)'") > $null
-    }
-
-    if($Default)
-    {
-        $paramSB.Append(" default='$($Default)'") > $null
-    }
-
-    if($Store)
-    {
-        $paramSB.Append(" store='$($Store)'") > $null
-    }
-    $paramSB.AppendLine(">") > $null
-
-    $choices = $ScriptBlock.Invoke() | 
-        Out-String
-    
-    $paramSB.Append($choices) > $null
-    $paramSB.Append("</parameter>") > $null
-    Write-Output $paramSB.ToString()
+    New-PlasterParameterBaseChoice -ChoiceType "choice" @PSBoundParameters
 }
 
 New-Alias -Name SingleChoice -Value New-PlasterParameterSingleChoice  

@@ -30,14 +30,7 @@ PlasterManifest {
     }
 
     Content {
-        NewModuleManifest {
-            Destination = '${PLASTER_PARAM_ModuleName}.psd1'
-            ModuleVersion = '$PLASTER_PARAM_ModuleVersion'
-            RootModule = '${PLASTER_PARAM_ModuleName}.psm1'
-            Author = '$PLASTER_PARAM_ModuleAuthor'
-            Description = '$PLASTER_PARAM_ModuleDesc'
-        }
-
+        
         File -Source 'template.psm1' -Destination '${PLASTER_PARAM_ModuleName}.psm1'
 
         Message "Creating you folders for module: $PLASTER_PARAM_ModuleName"

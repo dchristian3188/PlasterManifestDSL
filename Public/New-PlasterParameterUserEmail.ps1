@@ -1,4 +1,4 @@
-Function New-PlasterParameterMultiChoice
+Function New-PlasterParameterUserEmail
 {
     [CmdletBinding()]
     param(
@@ -22,25 +22,17 @@ Function New-PlasterParameterMultiChoice
             Position = 2
         )]
         [string]
-        $Default,
+        $Default, 
 
         [Parameter(
             ValueFromPipeline = $true
         )]
         [ValidateSet('Text','Encrypted')]
         [string]
-        $Store,
-
-        [Parameter(
-            ValueFromPipeline = $true,
-            Mandatory = $true,
-            Position = 0
-        )]
-        [scriptblock]
-        $ScriptBlock
+        $Store
     )
 
-    New-PlasterParameterBaseChoice -ChoiceType "multichoice" @PSBoundParameters
+    New-PlasterParameterBaseText -TextType 'user-email' @PSBoundParameters
 }
 
-New-Alias -Name MultiChoice -Value New-PlasterParameterMultiChoice
+New-Alias -Name UserEmail -Value New-PlasterParameterUserEmail
