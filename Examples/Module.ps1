@@ -6,18 +6,18 @@ PlasterManifest {
         Author = "David Christian"
     }
     Parameters {
-        
+
         UserFullName -Name "ModuleAuthor" -Prompt "Author"
-        
+
         Text -Name "ModuleName" -Prompt "Name of your module"
-        
+
         Text -Name "ModuleVersion" -Prompt "Version Number" -Default '0.0.0.1'
-        
+
         Text -Name "ModuleDesc" -Prompt "Brief Description of your module"
 
         MultiChoice -Name "FunctionFolders" -Prompt "Please select folders to include" -Default "0,1,2" {
             Choice -Label 'Public' -Help 'Adds a public folder to module root'
-            Choice -Label 'Internal' -Help 'Adds a internal folder to module root' 
+            Choice -Label 'Internal' -Help 'Adds a internal folder to module root'
             Choice -Label 'Classes' -Help "Adds a classes folder to module root"
             Choice -Label 'Binaries' -Help 'Adds a binaries folder to module root'
             Choice -Label 'Data' -Help 'Adds a data folder to module root'
@@ -30,8 +30,15 @@ PlasterManifest {
     }
 
     Content {
-        
-        File -Source 'template.psm1' -Destination '${PLASTER_PARAM_ModuleName}.psm1'
+        NewModuleManifest {
+            Destination = '${PLASTER_PARAM_ModuleName}.psd1'
+            ModuleVersion = '$PLASTER_PARAM_ModuleVersion'
+            RootModule = '${PLASTER_PARAM_ModuleName}.psm1'
+            Author = '$PLASTER_PARAM_ModuleAuthor'
+            Description = '$PLASTER_PARAM_ModuleDesc'
+        }
+
+        TemplateFile -Source 'template.psm1' -Destination '${PLASTER_PARAM_ModuleName}.psm1'
 
         Message "Creating you folders for module: $PLASTER_PARAM_ModuleName"
 

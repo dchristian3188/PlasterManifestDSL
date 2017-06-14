@@ -39,28 +39,7 @@ Function New-PlasterContentTemplateFile
         $Endcoding
     )
 
-    $fileSB = [System.Text.StringBuilder]::new()
-    $fileSB.AppendLine("<templateFile source='$($Source)'") > $null
-    $fileSB.AppendLine("    destination='$($Destination)'") > $null
-    
-    if($Condition)
-    {
-        $conditionString = New-Condition -Condition $Condition
-        $fileSB.AppendLine("   $conditionString") > $null
-    }
-
-    if($OpenInEditor)
-    {
-        $fileSB.Append("    OpenInEditor='true'") > $null
-    }
-
-    if($Endcoding)
-    {
-        $fileSB.Append("    endcoding='$($Endcoding)'") > $null
-    }
-
-    $fileSB.AppendLine('/>') > $null
-    Write-Output -InputObject $fileSB.ToString()
+    New-PlasterContentBaseFile -FileType 'templateFile' @PSBoundParameters
 
 }
 
