@@ -1,4 +1,4 @@
-Function New-PlasterMetadataBlock
+Function New-PlasterContentNewModuleManifest
 {
     [CmdletBinding()]
     param(
@@ -12,8 +12,8 @@ Function New-PlasterMetadataBlock
 
     $newScript = "[ordered]@{$($ScriptBlock.ToString())}"
     $newScriptBlock = [scriptblock]::Create($newScript)
-    $metaHash = & $newScriptBlock
-    New-MetadataXML @metaHash
+    $manifestHash = & $newScriptBlock
+    New-PlasterContentNewModuleManifestXML @manifestHash
 }
 
-New-Alias -Name Metadata -Value New-PlasterMetadataBlock
+New-Alias -Name NewModuleManifest -Value New-PlasterContentNewModuleManifest

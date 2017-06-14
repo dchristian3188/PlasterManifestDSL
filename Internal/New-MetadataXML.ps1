@@ -1,4 +1,4 @@
-Function New-Metadata
+Function New-MetadataXML
 {
     [CmdletBinding()]
     param(

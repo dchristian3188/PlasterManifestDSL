@@ -35,7 +35,7 @@ PlasterManifest {
             ModuleVersion = '$PLASTER_PARAM_ModuleVersion'
             RootModule = '${PLASTER_PARAM_ModuleName}.psm1'
             Author = '$PLASTER_PARAM_ModuleAuthor'
-            Description = '$PLASTER_PARAM_ModuleDesc'
+            description = '$PLASTER_PARAM_ModuleDesc'
         }
 
         TemplateFile -Source 'template.psm1' -Destination '${PLASTER_PARAM_ModuleName}.psm1'
@@ -74,4 +74,6 @@ PlasterManifest {
             $PLASTER_PARAM_Pester -eq "Yes"
         }
     }
-}
+}  |
+    Export-PlasterManifest -Destination C:\temp\plasterManifest.xml -Verbose -PassThru |
+        % {Code $psitem.fullname}
