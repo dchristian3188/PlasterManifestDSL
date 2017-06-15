@@ -1,4 +1,4 @@
-graph Monkey {
+graph CommandFlow {
     $moduleRoot = $PSScriptRoot
     $scripts = @{}
     Get-ChildItem $moduleRoot -Filter *.ps1 -Recurse -File |
