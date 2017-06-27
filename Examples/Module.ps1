@@ -27,6 +27,11 @@ PlasterManifest {
             Choice -Label "Yes" -Help "Adds a tests folder"
             Choice -Label "No" -Help "Does not add a tests folder"
         }
+
+        SingleChoice -Name "Git" -Prompt "Include GIt Support?" -Default 0 {
+            Choice -Label "Yes" -Help "Includes Git files"
+            Choice -Label "No" -Help "Does not include git files"
+        }
     }
 
     Content {
@@ -43,35 +48,39 @@ PlasterManifest {
         Message "Creating you folders for module: $PLASTER_PARAM_ModuleName"
 
         File -Source '' -Destination 'Public\' {
-            $PLASTER_PARAM_FunctionFolders -contains "Public"
+            $PLASTER_PARAM_FunctionFolders -contains 'Public'
         }
 
         File -Source '' -Destination 'Internal\' {
-            $PLASTER_PARAM_FunctionFolders -contains "Internal"
+            $PLASTER_PARAM_FunctionFolders -contains 'Internal'
         }
 
         File -Source '' -Destination 'Classes\' {
-            $PLASTER_PARAM_FunctionFolders -contains "Classes"
+            $PLASTER_PARAM_FunctionFolders -contains 'Classes'
         }
 
         File -Source '' -Destination 'Binaries\' {
-            $PLASTER_PARAM_FunctionFolders -contains "Binaries"
+            $PLASTER_PARAM_FunctionFolders -contains 'Binaries'
         }
 
         File -Source '' -Destination 'Data\' {
-            $PLASTER_PARAM_FunctionFolders -contains "Data"
+            $PLASTER_PARAM_FunctionFolders -contains 'Data'
         }
 
         Message "Creating a Tests folder" {
-            $PLASTER_PARAM_Pester -eq "Yes"
+            $PLASTER_PARAM_Pester -eq 'Yes'
         }
 
         File -Source '' -Destination 'Tests\' {
-            $PLASTER_PARAM_Pester -eq "Yes"
+            $PLASTER_PARAM_Pester -eq 'Yes'
         }
 
         File -Source 'basicTest.ps1' -Destination 'Tests\${PLASTER_PARAM_ModuleName}.tests.ps1' {
-            $PLASTER_PARAM_Pester -eq "Yes"
+            $PLASTER_PARAM_Pester -eq 'Yes'
+        }
+
+        File -Source '.gitignore' -Destination '.gitignore' {
+            $PlASTER_PARAM_Git -eq 'Yes'
         }
     }
 }  |
