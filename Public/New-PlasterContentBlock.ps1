@@ -15,9 +15,8 @@ Function New-PlasterContentBlock
 <content>
 $subContent
 </content>
-
 "@
     Write-Output -InputObject $contentBlock
 }
 
-New-Alias -Name Content -Value New-PlasterContentBlock  
+New-Alias -Name Content -Value New-PlasterContentBlock

@@ -75,19 +75,12 @@ task UpdateDSCResourceToExport -if (Test-Path -Path $script:DSCResourceFolder) {
 
     (Get-Content -Path $script:PsdPath) -replace "'_ResourcesToExport_'", $resources |
         Set-Content -Path $script:PsdPath
-
-
 }
 
 task Pester {
     $resultFile = "{0}\testResults{1}.xml" -f $script:OutPutFolder, (Get-date -Format 'yyyyMMdd_hhmmss')
 
-    $params = @{
-        ModuleRoot = "$script:OutPutFolder\$script:ModuleName"
-        ModuleName = $script:ModuleName
-     }
-
-    Invoke-Pester @{ Path = '.\Tests\*'; Parameters = $params} -OutputFile $resultFile -OutputFormat NUnitxml
+    Invoke-Pester -Path '.\Tests\*' -OutputFile $resultFile -OutputFormat NUnitxml
 }
 
 task GenerateGraph -if (Test-Path -Path 'Graphs') {
@@ -97,5 +90,3 @@ task GenerateGraph -if (Test-Path -Path 'Graphs') {
      $graphPath = Join-Path -Path $(Split-Path -Path $script:PsmPath) -ChildPath "PropertyFlow.png"
      .\Graphs\PropertyFlow.ps1 -OutputPath $graphPath -Quiet -CompiledModule $script:PsmPath > $null
 }
-
-

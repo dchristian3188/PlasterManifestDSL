@@ -10,11 +10,7 @@ Function New-Condition
         $Condition
     )
 
-    $conditionString = $Condition.ToString()
-    $conditionString = $conditionString -replace '^\r\n',''
-    $conditionString = $conditionString.Trim(" ")
-    $conditionString = $conditionString -replace '\r\n$',''
-    
+    $conditionString = $Condition.Ast.EndBlock.Extent.Text
     Write-Output -InputObject (" condition='{$($conditionString)}'")
 }
 
