@@ -1,4 +1,5 @@
-task . Clean, Build, Pester, GenerateGraph
+task . Clean, Build, Tests, GenerateGraph
+task Tests ImportCompipledModule, Pester
 task CreateManifest copyPSD, UpdateDSCResourceToExport
 task Build Compile, CreateManifest
 
@@ -77,9 +78,16 @@ task UpdateDSCResourceToExport -if (Test-Path -Path $script:DSCResourceFolder) {
         Set-Content -Path $script:PsdPath
 }
 
+task ImportCompipledModule {
+    Get-Module -Name $script:ModuleName |
+        Remove-Module -Force
+    Import-Module -Name $script:PsdPath -Force
+}
+
 task Pester {
     $resultFile = "{0}\testResults{1}.xml" -f $script:OutPutFolder, (Get-date -Format 'yyyyMMdd_hhmmss')
-    Invoke-Pester -Path '.\Tests\*' -OutputFile $resultFile -OutputFormat NUnitxml
+    $testFolder = Join-Path -Path $PSScriptRoot -ChildPath 'Tests\*'
+    Invoke-Pester -Path $testFolder -OutputFile $resultFile -OutputFormat NUnitxml
 }
 
 task GenerateGraph -if (Test-Path -Path 'Graphs') {
