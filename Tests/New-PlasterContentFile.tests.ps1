@@ -1,4 +1,4 @@
-Import-Module -Name .\ShouldBeErrorId.ps1
+Import-Module -Name $(Join-Path -Path $PSScriptRoot -ChildPath 'ShouldBeErrorId.ps1')
 Describe 'New-PlasterContentFile'{
     BeforeAll {
         $validTestCases = @(
