@@ -33,10 +33,10 @@ Function Export-PlasterManifest
         $PassThru
     )
 
-    [xml]$xmlFile = $Manifest
-    #Out-File -FilePath $Destination -InputObject $Manifest -Encoding $Endcoding 
-    $xmlFile.Save($Destination)
-    
+    #[xml]$xmlFile = $Manifest
+    Out-File -FilePath $Destination -InputObject $Manifest -Encoding $Endcoding
+    #$xmlFile.Save($Destination)
+
     if($PassThru)
     {
         Get-Item -Path $Destination
