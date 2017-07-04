@@ -68,19 +68,19 @@ PlasterManifest {
         }
 
         Message "Creating a Tests folder" {
-            $PLASTER_PARAM_Pester -eq 'Yes'
+            $PLASTER_PARAM_Pester -eq "Yes"
         }
 
         File -Source '' -Destination 'Tests\' {
-            $PLASTER_PARAM_Pester -eq 'Yes'
+            $PLASTER_PARAM_Pester -eq "Yes"
         }
 
         File -Source 'basicTest.ps1' -Destination 'Tests\${PLASTER_PARAM_ModuleName}.tests.ps1' {
-            $PLASTER_PARAM_Pester -eq 'Yes'
+            $PLASTER_PARAM_Pester -eq "Yes"
         }
 
         File -Source '.gitignore' -Destination '.gitignore' {
-            $PlASTER_PARAM_Git -eq 'Yes'
+            $PlASTER_PARAM_Git -eq "Yes"
         }
     }
 }  |

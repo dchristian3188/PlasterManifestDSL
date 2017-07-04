@@ -79,7 +79,6 @@ task UpdateDSCResourceToExport -if (Test-Path -Path $script:DSCResourceFolder) {
 
 task Pester {
     $resultFile = "{0}\testResults{1}.xml" -f $script:OutPutFolder, (Get-date -Format 'yyyyMMdd_hhmmss')
-
     Invoke-Pester -Path '.\Tests\*' -OutputFile $resultFile -OutputFormat NUnitxml
 }
 

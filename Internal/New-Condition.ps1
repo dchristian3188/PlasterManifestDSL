@@ -11,6 +11,7 @@ Function New-Condition
     )
 
     $conditionString = $Condition.Ast.EndBlock.Extent.Text
+    $conditionString = Set-SingleQuoteString -InputString $conditionString
     Write-Output -InputObject (" condition='{$($conditionString)}'")
 }
 

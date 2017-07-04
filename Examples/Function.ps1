@@ -11,12 +11,12 @@ PlasterManifest {
     Parameters {
 
         Text -Name "FunctionName" -Prompt "Name of your function"
-        
+
         SingleChoice -Name "Help" -Prompt "Include Comment based Help?" -Default 0 {
             Choice -Label "Yes" -Help "Adds Comment Based"
             Choice -Label "No" -Help "Does not add comment based help"
         }
-        
+
         SingleChoice -Name "PipelineSupport" -Prompt "Include Begin Process End blocks?" -Default 0 {
             Choice -Label "Yes" -Help "Adds begin process and end to function"
             Choice -Label "No" -Help "Does not pipeline support to the function"
