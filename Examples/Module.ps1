@@ -32,6 +32,11 @@ PlasterManifest {
             Choice -Label "Yes" -Help "Includes Git files"
             Choice -Label "No" -Help "Does not include git files"
         }
+
+        SingleChoice -Name "InvokeBuild" -Prompt "Include InvokeBuild Script" -Default 0 {
+            Choice -Label "Yes" -Help "Adds an invoke build script at the root of module"
+            Choice -Label "No" -Help "Does not include any invoke build scripts"
+        }
     }
 
     Content {
@@ -71,6 +76,10 @@ PlasterManifest {
             $PLASTER_PARAM_Pester -eq "Yes"
         }
 
+        RequireModule -Name "Pester" -MinimumVersion '3.4.0' {
+            $PLASTER_PARAM_Pester -eq "Yes"
+        }
+
         File -Source '' -Destination 'Tests\' {
             $PLASTER_PARAM_Pester -eq "Yes"
         }
@@ -82,7 +91,15 @@ PlasterManifest {
         File -Source '.gitignore' -Destination '.gitignore' {
             $PlASTER_PARAM_Git -eq "Yes"
         }
+
+        File -Source 'default.build.ps1' -Destination '${PLASTER_PARAM_ModuleName}.build.ps1' {
+            $PLASTER_PARAM_InvokeBuild -eq "Yes"
+        }
+
+        RequireModule -Name 'InvokeBuild' {
+            $PLASTER_PARAM_InvokeBuild -eq 'Yes'
+        }
     }
 }  |
     Export-PlasterManifest -Destination C:\temp\plasterManifest.xml -Verbose -PassThru |
-        % {Code $psitem.fullname}
+    % {Code $psitem.fullname}
