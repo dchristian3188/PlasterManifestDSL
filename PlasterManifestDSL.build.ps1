@@ -1,7 +1,8 @@
-task . Clean, Build, Tests, GenerateGraph
+task . Clean, Build, Tests, GenerateGraph, Help
 task Tests ImportCompipledModule, Pester
 task CreateManifest copyPSD, UpdateDSCResourceToExport
 task Build Compile, CreateManifest
+task Help CreateInitialHelpDocs, UpdateHelpDocs, GenerateExternalHelp
 
 
 $script:ModuleName = Split-Path -Path $PSScriptRoot -Leaf
@@ -96,4 +97,29 @@ task GenerateGraph -if (Test-Path -Path 'Graphs') {
 
      $graphPath = Join-Path -Path $(Split-Path -Path $script:PsmPath) -ChildPath "PropertyFlow.png"
      .\Graphs\PropertyFlow.ps1 -OutputPath $graphPath -Quiet -CompiledModule $script:PsmPath > $null
+}
+
+task CreateInitialHelpDocs -if (-not(Test-Path -Path 'Docs')) {
+    New-MarkdownHelp -OutputFolder $PSScriptRoot\Docs -WithModulePage -Module $script:ModuleName
+}
+
+$docParams = @{
+    Inputs = {
+        foreach ($folder in $script:ImportFolders)
+        {
+            Get-ChildItem -Path $folder -Recurse -File -Filter '*.ps1'
+        }
+    }
+
+    Output = {
+        Get-ChildItem -Path "$PSScriptRoot\Docs\*" -Filter "*md"
+    }
+}
+task UpdateHelpDocs @docParams {
+    Update-MarkdownHelp -Path .\Docs -AlphabeticParamsOrder
+}
+
+task GenerateExternalHelp {
+    $helpOutput = [IO.Path]::Combine($PSScriptRoot,'Output',$script:ModuleName,'en-US\')
+    New-ExternalHelp -Path $PSScriptRoot\Docs -OutputPath $helpOutput
 }
