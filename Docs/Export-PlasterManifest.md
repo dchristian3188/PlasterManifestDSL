@@ -1,13 +1,13 @@
 ---
 external help file: PlasterManifestDSL-help.xml
-online version: 
+online version:
 schema: 2.0.0
 ---
 
 # Export-PlasterManifest
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Saves an XML manifest.
 
 ## SYNTAX
 
@@ -16,26 +16,34 @@ Export-PlasterManifest [-Manifest] <String> [-Destination] <String> [[-Endcoding
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Used to save the xml manifest created by New-PlasterManifestXML.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PlasterManifest {
+    Metadata {
+        Title = "My Posh Template"
+        TemplateName = 'PoshTemp'
+    }
+    Content {
+        File -Source 'myTemplate.txt' -Destination 'newProject.txt'
+    }
+} | Export-PlasterManifest -Destination PlasterManifest.xml
 ```
 
-{{ Add example description here }}
+Exports a simple Plaster Manifest to a file called 'PlasterManifest.xml' in the current directory.
 
 ## PARAMETERS
 
 ### -Destination
-{{Fill Destination Description}}
+Path to save the Plaster Manifest.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -45,12 +53,12 @@ Accept wildcard characters: False
 ```
 
 ### -Endcoding
-{{Fill Endcoding Description}}
+File encoding to use when saving the manifest.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 2
@@ -60,12 +68,12 @@ Accept wildcard characters: False
 ```
 
 ### -Manifest
-{{Fill Manifest Description}}
+Plaster Manifest that will be saved.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -75,12 +83,12 @@ Accept wildcard characters: False
 ```
 
 ### -PassThru
-{{Fill PassThru Description}}
+If preset will return an IO.FileInfo object for the saved file.
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
