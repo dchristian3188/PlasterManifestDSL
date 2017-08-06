@@ -37,6 +37,11 @@ PlasterManifest {
             Choice -Label "Yes" -Help "Adds an invoke build script at the root of module"
             Choice -Label "No" -Help "Does not include any invoke build scripts"
         }
+
+        SingleChoice -Name "Graphiz" -Prompt "Include Grphiz" -Default 0 {
+            Choice -Label "Yes" -Help "Adds a graphiz diagram"
+            Choice -Label "No" -Help "Does not add graphiz support"
+        }
     }
 
     Content {
@@ -99,7 +104,18 @@ PlasterManifest {
         RequireModule -Name 'InvokeBuild' {
             $PLASTER_PARAM_InvokeBuild -eq 'Yes'
         }
+
+        RequireModule -Name 'PSGraph' {
+            $PLASTER_PARAM_Graphiz -eq 'Yes'
+        }
+
+        File -Source '' -Destination 'Graphs' {
+            $PLASTER_PARAM_Graphiz -eq 'Yes'
+        }
+
+        File -Source 'CommandFlow.ps1' -Destination 'Graphs\CommandFlow.ps1' {
+            $PLASTER_PARAM_Graphiz -eq 'Yes'
+        }
     }
-}  |
-    Export-PlasterManifest -Destination C:\temp\plasterManifest.xml -Verbose -PassThru |
+}  |  Export-PlasterManifest -Destination C:\temp\plasterManifest.xml -Verbose -PassThru |
     % {Code $psitem.fullname}
