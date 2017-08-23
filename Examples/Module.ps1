@@ -97,7 +97,7 @@ PlasterManifest {
             $PlASTER_PARAM_Git -eq "Yes"
         }
 
-        File -Source 'default.build.ps1' -Destination '${PLASTER_PARAM_ModuleName}.build.ps1' {
+        TemplateFile -Source 'default.build.ps1' -Destination '${PLASTER_PARAM_ModuleName}.build.ps1' {
             $PLASTER_PARAM_InvokeBuild -eq "Yes"
         }
 
