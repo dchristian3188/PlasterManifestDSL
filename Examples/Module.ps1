@@ -105,6 +105,10 @@ PlasterManifest {
             $PlASTER_PARAM_Git -eq "Yes"
         }
 
+        TemplateFile -Source 'README.md' -Destination "${PLASTER_PARAM_ModuleName}\README.md" {
+            $PLASTER_PARAM_Git -eq "Yes"
+        }
+
         File -Source '.gitignore' -Destination '${PLASTER_PARAM_ModuleName}\.gitignore' {
             $PlASTER_PARAM_Git -eq "Yes"
         }
