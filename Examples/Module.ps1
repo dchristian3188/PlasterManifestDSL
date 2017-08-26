@@ -50,6 +50,9 @@ PlasterManifest {
     }
 
     Content {
+
+        Message -Message "Setting up your project"
+
         NewModuleManifest {
             Destination = '${PLASTER_PARAM_ModuleName}\${PLASTER_PARAM_ModuleName}.psd1'
             ModuleVersion = '$PLASTER_PARAM_ModuleVersion'
@@ -82,11 +85,11 @@ PlasterManifest {
             $PLASTER_PARAM_FunctionFolders -contains 'DSCResources'
         }
 
-        RequireModule -Name "Pester" -MinimumVersion '3.4.0' {
+        Message "Setting up support for Pester" {
             $PLASTER_PARAM_Pester -eq "Yes"
         }
 
-        Message "Creating a Tests folder" {
+        RequireModule -Name "Pester" -MinimumVersion '3.4.0' {
             $PLASTER_PARAM_Pester -eq "Yes"
         }
 
@@ -98,8 +101,16 @@ PlasterManifest {
             $PLASTER_PARAM_Pester -eq "Yes"
         }
 
+        Message "Setting up support for Git" {
+            $PlASTER_PARAM_Git -eq "Yes"
+        }
+
         File -Source '.gitignore' -Destination '${PLASTER_PARAM_ModuleName}\.gitignore' {
             $PlASTER_PARAM_Git -eq "Yes"
+        }
+
+        Message "Setting up support for Invoke-Build" {
+            $PLASTER_PARAM_InvokeBuild -eq "Yes"
         }
 
         RequireModule -Name 'InvokeBuild' {
@@ -108,6 +119,10 @@ PlasterManifest {
 
         TemplateFile -Source 'default.build.ps1' -Destination '${PLASTER_PARAM_ModuleName}\${PLASTER_PARAM_ModuleName}.build.ps1' {
             $PLASTER_PARAM_InvokeBuild -eq "Yes"
+        }
+
+        Message "Setting up support for PSGraph" {
+            $PLASTER_PARAM_PSGraph -eq "Yes"
         }
 
         RequireModule -Name 'PSGraph' {
@@ -120,6 +135,10 @@ PlasterManifest {
 
         File -Source 'CommandFlow.ps1' -Destination '${PLASTER_PARAM_ModuleName}\Graphs\CommandFlow.ps1' {
             $PLASTER_PARAM_PSGraph -eq 'Yes'
+        }
+
+        Message "Setting up support for PlatyPS" {
+            $PLASTER_PARAM_PlatyPS -eq "Yes"
         }
 
         RequireModule -Name 'PlatyPS' {
