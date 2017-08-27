@@ -28,7 +28,7 @@ PlasterManifest {
             Choice -Label "No" -Help "Does not add a tests folder"
         }
 
-        SingleChoice -Name "Git" -Prompt "Include GIt Support?" -Default 0 {
+        SingleChoice -Name "Git" -Prompt "Include Git Support?" -Default 0 {
             Choice -Label "Yes" -Help "Includes Git files"
             Choice -Label "No" -Help "Does not include git files"
         }
